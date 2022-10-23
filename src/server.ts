@@ -41,6 +41,7 @@ import { Request, Response } from 'express';
     if (req.query.image_url){
       filterImageFromURL(req.query.image_url).then(
         (filepath)=>{
+          res.status(200)
           res.sendFile(filepath,function (err) {
             try {
               deleteLocalFiles([filepath])
@@ -51,6 +52,7 @@ import { Request, Response } from 'express';
         }
       )
     }else{
+      res.status(400)
       res.send("image_url is not valid")
     }
 
